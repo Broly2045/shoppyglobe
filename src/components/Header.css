@@ -1,0 +1,126 @@
+/* Header.css — sticky top navigation bar styles */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* Logo */
+.header__logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e74c3c;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+/* Search bar */
+.header__search {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f5f7;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 0 12px;
+  transition: border-color 0.2s;
+}
+
+.header__search:focus-within {
+  border-color: #e74c3c;
+  background: #fff;
+}
+
+.header__search-icon {
+  color: #999;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.header__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #1a1a2e;
+  padding: 10px 0;
+}
+
+.header__search-input::placeholder {
+  color: #aaa;
+}
+
+.header__search-clear {
+  background: transparent;
+  border: none;
+  color: #aaa;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.header__search-clear:hover {
+  color: #1a1a2e;
+}
+
+/* Cart icon */
+.header__cart {
+  position: relative;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  padding: 4px;
+  transition: transform 0.2s;
+}
+
+.header__cart:hover {
+  transform: scale(1.1);
+}
+
+/* Red badge showing number of cart items */
+.header__cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+/* Responsive — hide search text on small screens */
+@media (max-width: 500px) {
+  .header__inner {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  .header__logo {
+    font-size: 1.1rem;
+  }
+}
