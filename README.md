@@ -3,7 +3,7 @@
 A modern e-commerce application built with React, Vite, Redux Toolkit, and React Router v7.
 
 ## 🔗 GitHub Repository
-[https://github.com/YOUR_USERNAME/shoppyglobe](https://github.com/Broly2045/shoppyglobe)
+https://github.com/Broly2045/shoppyglobe
 
 
 ## 🚀 Getting Started
@@ -16,7 +16,7 @@ A modern e-commerce application built with React, Vite, Redux Toolkit, and React
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/shoppyglobe.git
+git clone https://github.com/Broly2045/shoppyglobe.git
 
 # 2. Navigate into the project folder
 cd shoppyglobe
