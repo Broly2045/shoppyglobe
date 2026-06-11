@@ -102,7 +102,7 @@ function Checkout() {
     // Redirect to home page after 2.5 seconds
     setTimeout(() => {
       navigate('/')
-    }, 2500)
+    }, 3000)
   }
 
   // If cart is empty and order not placed, redirect to home
