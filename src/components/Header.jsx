@@ -52,8 +52,14 @@ function Header() {
         </div>
 
         {/* Cart icon with item count badge */}
-        <Link to="/cart" className="header__cart" aria-label="View cart">
+        <Link
+          to="/cart"
+          className="header__cart"
+          aria-label="View cart"
+          title="View Cart"
+        >
           <span className="header__cart-icon">🛒</span>
+
           {/* Badge only shows when cart has items */}
           {cartCount > 0 && (
             <span className="header__cart-badge">{cartCount}</span>
