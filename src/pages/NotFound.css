@@ -52,7 +52,7 @@
 
 /* 404 number */
 .notfound__code {
-  font-size: clamp(5rem, 20vw, 9rem);
+  font-size: clamp(6rem, 22vw, 10rem);
   font-weight: 800;
   color: #e74c3c;
   line-height: 1;
