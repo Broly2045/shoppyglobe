@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import useFetch from '../hooks/useFetch'
 import { addToCart, selectCartItems } from '../store/cartSlice'
 import LoadingSpinner from '../components/LoadingSpinner'
-import './ProductDetail.jsx'
+import './ProductDetail.css'
 
 function ProductDetail() {
   // Get the dynamic :id from the URL — e.g. /product/5 gives id = "5"
@@ -20,15 +20,10 @@ function ProductDetail() {
     `https://dummyjson.com/products/${id}`
   )
 
-  // Check if product is already in cart
+  // Get all cart items from Redux
   const cartItems = useSelector(selectCartItems)
-  const isInCart = cartItems.some((item) => item.id === product?.id)
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(product))
-  }
-
-  // Show spinner while fetching
+  // Show spinner while data is being fetched
   if (loading) return <LoadingSpinner />
 
   // Graceful error handling — show message if fetch fails
@@ -40,6 +35,16 @@ function ProductDetail() {
         <button onClick={() => navigate('/')}>Back to Home</button>
       </div>
     )
+  }
+
+  // Guard — if product is still null after loading, show spinner
+  if (!product) return <LoadingSpinner />
+
+  // Only check cart after we confirm product exists
+  const isInCart = cartItems.some((item) => item.id === product.id)
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product))
   }
 
   return (
@@ -71,7 +76,11 @@ function ProductDetail() {
               <div className="detail__thumbnails">
                 {product.images.map((img, index) => (
                   <div key={index} className="detail__thumb">
-                    <img src={img} alt={`${product.title} view ${index + 1}`} loading="lazy" />
+                    <img
+                      src={img}
+                      alt={`${product.title} view ${index + 1}`}
+                      loading="lazy"
+                    />
                   </div>
                 ))}
               </div>
@@ -98,7 +107,11 @@ function ProductDetail() {
                 {Array.from({ length: 5 }, (_, i) => (
                   <span
                     key={i}
-                    className={i < Math.round(product.rating) ? 'star star--filled' : 'star'}
+                    className={
+                      i < Math.round(product.rating)
+                        ? 'star star--filled'
+                        : 'star'
+                    }
                   >
                     ★
                   </span>
@@ -126,7 +139,11 @@ function ProductDetail() {
             <p className="detail__description">{product.description}</p>
 
             {/* Stock availability */}
-            <p className={`detail__stock ${product.stock === 0 ? 'detail__stock--out' : ''}`}>
+            <p
+              className={`detail__stock ${
+                product.stock === 0 ? 'detail__stock--out' : ''
+              }`}
+            >
               {product.stock === 0
                 ? 'Out of stock'
                 : `${product.stock} items available`}
@@ -152,13 +169,16 @@ function ProductDetail() {
               {product.reviews.map((review, index) => (
                 <div key={index} className="detail__review-card">
                   <div className="detail__review-header">
-                    <span className="detail__reviewer">{review.reviewerName}</span>
-                    {/* Star rating for each review */}
+                    <span className="detail__reviewer">
+                      {review.reviewerName}
+                    </span>
                     <div className="stars">
                       {Array.from({ length: 5 }, (_, i) => (
                         <span
                           key={i}
-                          className={i < review.rating ? 'star star--filled' : 'star'}
+                          className={
+                            i < review.rating ? 'star star--filled' : 'star'
+                          }
                         >
                           ★
                         </span>
