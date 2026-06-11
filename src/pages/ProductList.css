@@ -1,0 +1,100 @@
+/* ProductList.css — home page layout and grid */
+
+.productlist {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.productlist__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header row — title on left, count on right */
+.productlist__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.productlist__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.productlist__count {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Product grid — matches the reference image layout */
+.productlist__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Error state */
+.productlist__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.productlist__error h2 {
+  font-size: 1.3rem;
+  color: #1a1a2e;
+}
+
+.productlist__error p {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.productlist__error button {
+  padding: 10px 24px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.productlist__error button:hover {
+  opacity: 0.85;
+}
+
+/* Empty search state */
+.productlist__empty {
+  padding: 3rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .productlist {
+    padding: 1rem;
+  }
+
+  .productlist__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .productlist__grid {
+    grid-template-columns: 1fr;
+  }
+}
