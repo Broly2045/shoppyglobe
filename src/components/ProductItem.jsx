@@ -9,6 +9,7 @@ import { addToCart, selectCartItems } from '../store/cartSlice'
 import './ProductItem.css'
 
 // Helper — renders star icons based on a numeric rating out of 5
+
 function StarRating({ rating }) {
   return (
     <div className="stars" aria-label={`Rating: ${rating} out of 5`}>
