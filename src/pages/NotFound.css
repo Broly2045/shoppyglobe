@@ -1,0 +1,160 @@
+/* NotFound.css — full screen 404 page, no Header */
+
+.notfound {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #f4f5f7;
+  padding: 2rem;
+}
+
+/* Subtle dot grid background */
+.notfound__bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#d0d0d0 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(
+    ellipse 70% 70% at 50% 50%,
+    black 30%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Main content */
+.notfound__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 404 number */
+.notfound__code {
+  font-size: clamp(5rem, 20vw, 9rem);
+  font-weight: 800;
+  color: #e74c3c;
+  line-height: 1;
+  letter-spacing: -4px;
+  opacity: 0.15;
+  user-select: none;
+  position: absolute;
+  top: -2rem;
+}
+
+/* Title */
+.notfound__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-top: 4rem;
+}
+
+/* Description */
+.notfound__desc {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Invalid URL pill */
+.notfound__url {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  color: #e74c3c;
+  font-size: 0.82rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Error details table */
+.notfound__details {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+.notfound__detail-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid #f5f5f5;
+  align-items: center;
+}
+
+.notfound__detail-row:last-child {
+  border-bottom: none;
+}
+
+.notfound__detail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.notfound__detail-value {
+  font-size: 0.82rem;
+  color: #1a1a2e;
+  font-weight: 500;
+  word-break: break-all;
+}
+
+/* Back to home button */
+.notfound__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 28px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 0.5rem;
+}
+
+.notfound__btn:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+  .notfound__detail-row {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .notfound__title {
+    font-size: 1.3rem;
+  }
+}
