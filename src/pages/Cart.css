@@ -190,6 +190,12 @@
   }
 }
 
+.cart__item-count {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 4px;
+}
+
 @media (max-width: 600px) {
   .cart {
     padding: 1rem;

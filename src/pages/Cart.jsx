@@ -31,6 +31,7 @@ function Cart() {
       <div className="cart__inner">
 
         <h1 className="cart__title">Your Cart</h1>
+        <p className="cart__item-count">{cartItems.length} item{cartItems.length !== 1 ? 's' : ''}</p>
 
         <div className="cart__layout">
 
