@@ -1,61 +1,78 @@
 // App.jsx — defines all routes using createBrowserRouter 
-// createBrowserRouter is preferred over BrowserRouter for better data handling
+// All components are lazy loaded using React.lazy for code splitting
 
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
-import Header from './components/Header'
-import LoadingSpinner from './components/LoadingSpinner'
 
-// ── Lazy load all page components for code splitting ──
-// React.lazy means the component's JS is only downloaded when that route is visited
+// ── Lazy load ALL components and pages ──
+const Header = lazy(() => import('./components/Header'))
+const LoadingSpinner = lazy(() => import('./components/LoadingSpinner'))
 const ProductList = lazy(() => import('./pages/ProductList'))
 const ProductDetail = lazy(() => import('./pages/ProductDetail'))
 const Cart = lazy(() => import('./pages/Cart'))
 const Checkout = lazy(() => import('./pages/Checkout'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-// Layout component — renders Header on all valid routes via Outlet
+// Layout component — renders Header + child page via Outlet
+// Suspense wraps everything so any lazy component shows the spinner while loading
 function MainLayout() {
   return (
-    <>
+    // Suspense at layout level catches lazy loads for both Header and pages
+    <Suspense fallback={<div className="spinner-wrapper"><div className="spinner" /></div>}>
       <Header />
-      {/* Suspense shows a fallback while the lazy component is loading */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <Outlet />
-      </Suspense>
-    </>
+      <Outlet />
+    </Suspense>
   )
 }
 
-// createBrowserRouter defines all routes and their components in one place
-// Gives better data handling, error boundaries, and loader support
+// createBrowserRouter — React Router v7 recommended approach
 export const router = createBrowserRouter([
   {
-    // MainLayout wraps all valid routes — Header is shown on these pages
+    // All valid routes rendered inside MainLayout (with Header)
     element: <MainLayout />,
     children: [
       {
         path: '/',
-        element: <ProductList />,
+        element: (
+          <Suspense fallback={<div className="spinner-wrapper"><div className="spinner" /></div>}>
+            <ProductList />
+          </Suspense>
+        ),
       },
       {
-        // Dynamic route — :id is the product's id from the API
+        // Dynamic route — :id maps to a product's id from the API
         path: '/product/:id',
-        element: <ProductDetail />,
+        element: (
+          <Suspense fallback={<div className="spinner-wrapper"><div className="spinner" /></div>}>
+            <ProductDetail />
+          </Suspense>
+        ),
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: (
+          <Suspense fallback={<div className="spinner-wrapper"><div className="spinner" /></div>}>
+            <Cart />
+          </Suspense>
+        ),
       },
       {
         path: '/checkout',
-        element: <Checkout />,
+        element: (
+          <Suspense fallback={<div className="spinner-wrapper"><div className="spinner" /></div>}>
+            <Checkout />
+          </Suspense>
+        ),
       },
     ],
   },
   {
-    // NotFound is outside MainLayout — no Header on the 404 page
+    // 404 — outside MainLayout so Header is NOT rendered
     path: '*',
-    element: <NotFound />,
+    element: (
+      <Suspense fallback={<div className="spinner-wrapper"><div className="spinner" /></div>}>
+        <NotFound />
+      </Suspense>
+    ),
   },
 ])
