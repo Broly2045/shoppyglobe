@@ -51,18 +51,24 @@ function ProductItem({ product }) {
         <img
           src={product.thumbnail}
           alt={product.title}
+          title={product.title}
           className="product-item__image"
           loading="lazy"
         />
+
         {/* Category badge — top right of image like in reference */}
-        <span className="product-item__category">{product.category}</span>
+        <span className="product-item__category">
+          {product.category}
+        </span>
       </div>
 
       {/* Card body */}
       <div className="product-item__body">
 
         {/* Product title */}
-        <h3 className="product-item__title">{product.title}</h3>
+        <h3 className="product-item__title">
+          {product.title}
+        </h3>
 
         {/* Star rating row */}
         <div className="product-item__rating">
@@ -70,7 +76,11 @@ function ProductItem({ product }) {
         </div>
 
         {/* Availability — shows stock count or Sold Out */}
-        <p className={`product-item__stock ${product.stock === 0 ? 'product-item__stock--out' : ''}`}>
+        <p
+          className={`product-item__stock ${
+            product.stock === 0 ? 'product-item__stock--out' : ''
+          }`}
+        >
           {product.stock === 0
             ? 'Sold out!'
             : `${product.stock} in stock`}
@@ -81,8 +91,11 @@ function ProductItem({ product }) {
           <span className="product-item__price">
             ${product.price.toFixed(2)}
           </span>
+
           <button
-            className={`product-item__btn ${isInCart ? 'product-item__btn--added' : ''}`}
+            className={`product-item__btn ${
+              isInCart ? 'product-item__btn--added' : ''
+            }`}
             onClick={handleAddToCart}
             disabled={product.stock === 0}
             aria-label={`Add ${product.title} to cart`}
